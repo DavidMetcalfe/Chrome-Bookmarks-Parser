@@ -3,6 +3,8 @@
 A pair of scripts that parses the Bookmarks.bak json and outputs it
 as a compatible HTML file that Chrome can import again.
 
+Originally written as a means of preventing complete bookmark loss in the rare instances that Chrome explodes (and it does). This can be scheduled to run on your system to keep a fresh backup as needed, or as a last-ditch effort when everything's already on fire.  
+
 ## Installation
 
 Scripts rely on Python 3. No external libraries/modules needed.
