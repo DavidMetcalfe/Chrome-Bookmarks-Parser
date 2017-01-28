@@ -137,3 +137,10 @@ ehthumbs.db
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# =========================
+# Project-specific ignores
+# =========================
+
+*.bak
+*.html
