@@ -17,7 +17,7 @@ Scripts rely on Python 3. No external libraries/modules needed.
 
 ## Contributing
 
-As I don't have access to a system with Linux distros or Mac OS X, I have written the Backup script according to what I could find online and my own knowledge. Testing of these is welcomed on the related systems along with fixes. 
+As I don't have access to a system with any Linux distro or Mac OS X, I have written the Backup script according to what I could find online and my own knowledge. Testing of these is welcomed on the related systems along with fixes. 
 
 ## Credits
 
