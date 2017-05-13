@@ -11,6 +11,12 @@ useros = platform.system()
 destination = os.path.dirname(os.path.realpath(__file__))
 cmd = "python Chrome_Bookmarks_Parser.py"
 
+def osWalk():
+    for dirname, dirnames, filenames in os.walk('C:\\'):
+        for filename in filenames:
+            if "Bookmarks.bak" in filename and "Chrome" in dirname:
+                return os.path.join(dirname, filename)
+
 def findChrome():
 
     # Directory references for Chrome pulled from Chromium docs.
@@ -30,7 +36,10 @@ def findChrome():
             if os.path.exists(filePath):
                 copy(filePath, destination)
             else:
-                sys.exit("Cannot find Bookmarks.bak file.")
+                try:
+                    copy(osWalk(), destination)
+                except:
+                    sys.exit("Cannot find Bookmarks.bak file.")
 
         # Else, assume OS is 10 / 8 / 7 / Vista.
         else:
@@ -42,7 +51,10 @@ def findChrome():
             if os.path.exists(filePath):
                 copy(filePath, destination)
             else:
-                sys.exit("Cannot find Bookmarks.bak file.")
+                try:
+                    copy(osWalk(), destination)
+                except:
+                    sys.exit("Cannot find Bookmarks.bak file.")
 
     # Check if platform is Mac OS X.
     elif useros is 'Darwin':
