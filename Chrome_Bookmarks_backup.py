@@ -11,11 +11,13 @@ useros = platform.system()
 destination = os.path.dirname(os.path.realpath(__file__))
 cmd = "python Chrome_Bookmarks_Parser.py"
 
+
 def osWalk():
     for dirname, dirnames, filenames in os.walk('C:\\'):
         for filename in filenames:
             if "Bookmarks.bak" in filename and "Chrome" in dirname:
                 return os.path.join(dirname, filename)
+
 
 def findChrome():
 
@@ -38,7 +40,8 @@ def findChrome():
             else:
                 try:
                     copy(osWalk(), destination)
-                except:
+                except Exception as e:
+                    print("{}".format(e.message))
                     sys.exit("Cannot find Bookmarks.bak file.")
 
         # Else, assume OS is 10 / 8 / 7 / Vista.
@@ -53,7 +56,8 @@ def findChrome():
             else:
                 try:
                     copy(osWalk(), destination)
-                except:
+                except Exception as e:
+                    print("{}".format(e.message))
                     sys.exit("Cannot find Bookmarks.bak file.")
 
     # Check if platform is Mac OS X.
@@ -65,7 +69,11 @@ def findChrome():
         if os.path.exists(filePath):
             copy(filePath, destination)
         else:
-            sys.exit("Cannot find Bookmarks.bak file.")
+            try:
+                copy(osWalk(), destination)
+            except Exception as e:
+                print("{}".format(e.message))
+                sys.exit("Cannot find Bookmarks.bak file.")
 
     # Check if platform is Linux.
     elif useros is 'Linux':
@@ -76,10 +84,16 @@ def findChrome():
         if os.path.exists(filePath):
             copy(filePath, destination)
         else:
-            sys.exit("Cannot find Bookmarks.bak file.")
+            try:
+                copy(osWalk(), destination)
+            except Exception as e:
+                print("{}".format(e.message))
+                sys.exit("Cannot find Bookmarks.bak file.")
+
 
 try:
     findChrome()
     subprocess.Popen(cmd)
-except:
+except Exception as e:
+    print("{}".format(e.message))
     sys.exit("Oops. Something went wrong.")
