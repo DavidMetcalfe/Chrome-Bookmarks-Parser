@@ -10,13 +10,9 @@ https://github.com/mattCreative/chrome-bookmarks-converter
 import json
 
 __author__ = "David Metcalfe"
-__copyright__ = "Copyright 2017"
 __credits__ = ["David Metcalfe", "Matt Jones"]
-
 __license__ = "GPL"
-__version__ = "1.0.1"
-__maintainer__ = "David Metcalfe"
-__status__ = "Production"
+
 
 def main():
 
