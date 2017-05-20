@@ -9,7 +9,7 @@ import subprocess
 userhome = os.path.expanduser('~').replace('\\', '\\\\')
 useros = platform.system()
 destination = os.path.dirname(os.path.realpath(__file__))
-cmd = "python Chrome_Bookmarks_Parser.py"
+cmd = ['python', 'Chrome_Bookmarks_Parser.py']
 
 
 def osWalk():
@@ -27,7 +27,7 @@ def findChrome():
     vernum = platform.version()
 
     # Check if platform is Windows.
-    if useros is 'Windows':
+    if useros == 'Windows':
         # Determine if OS is XP.
         if re.search('^5\.', vernum):
             profilePath = os.path.normpath(os.path.join(
@@ -41,7 +41,7 @@ def findChrome():
                 try:
                     copy(osWalk(), destination)
                 except Exception as e:
-                    print("{}".format(e.message))
+                    print("{}".format(e))
                     sys.exit("Cannot find Bookmarks.bak file.")
 
         # Else, assume OS is 10 / 8 / 7 / Vista.
@@ -57,13 +57,13 @@ def findChrome():
                 try:
                     copy(osWalk(), destination)
                 except Exception as e:
-                    print("{}".format(e.message))
+                    print("{}".format(e))
                     sys.exit("Cannot find Bookmarks.bak file.")
 
     # Check if platform is Mac OS X.
-    elif useros is 'Darwin':
+    elif useros == 'Darwin':
         profilePath = os.path.normpath(os.path.join(
-            userhome, '/Library/Application Support/Google/Chrome/Default'))
+            userhome, 'Library/Application Support/Google/Chrome/Default'))
         filePath = os.path.normpath(os.path.join(
             profilePath, "Bookmarks.bak"))
         if os.path.exists(filePath):
@@ -72,11 +72,11 @@ def findChrome():
             try:
                 copy(osWalk(), destination)
             except Exception as e:
-                print("{}".format(e.message))
+                print("{}".format(e))
                 sys.exit("Cannot find Bookmarks.bak file.")
 
     # Check if platform is Linux.
-    elif useros is 'Linux':
+    elif useros == 'Linux':
         profilePath = os.path.normpath(os.path.join(
             userhome, '/.config/google-chrome/Default'))
         filePath = os.path.normpath(os.path.join(
@@ -87,7 +87,7 @@ def findChrome():
             try:
                 copy(osWalk(), destination)
             except Exception as e:
-                print("{}".format(e.message))
+                print("{}".format(e))
                 sys.exit("Cannot find Bookmarks.bak file.")
 
 
@@ -95,5 +95,5 @@ try:
     findChrome()
     subprocess.Popen(cmd)
 except Exception as e:
-    print("{}".format(e.message))
+    print("{}".format(e))
     sys.exit("Oops. Something went wrong.")
