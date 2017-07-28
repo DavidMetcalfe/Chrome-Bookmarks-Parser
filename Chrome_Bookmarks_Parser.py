@@ -63,5 +63,10 @@ def main():
                 deeper(workingData['roots']['other']['children'], 1, 10)
                 writeIt('</DL><p>')
 
+            if workingData['roots']['synced']:
+                #Chrome does not encode a header or new list for mobile bookmarks
+                deeper(workingData['roots']['synced']['children'], 1, 10)
+                writeIt('</DL><p>')
+
 if __name__ == "__main__":
     main()
